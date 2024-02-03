@@ -1,0 +1,10 @@
+# ProstgreSQL Setup
+# sudo apt update
+# sudo apt upgrade
+# sudo apt install postgresql
+# sudo systemctl start postgresql
+# sudo systemctl status postgresql
+
+django-environ
+Django~=5.0.1
+psycopg2

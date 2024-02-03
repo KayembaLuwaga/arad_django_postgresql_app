@@ -1,0 +1,19 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/messages.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Messages</h2>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>{{ message.sender.username }}:</strong>
+                    {{ message.content }}
+                    <span class="timestamp">{{ message.timestamp }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages.</p>
+    {% endif %}
+{% endblock %}

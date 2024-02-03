@@ -1,0 +1,21 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/registration/register.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="form-container">
+    <form method="post">
+      <h2>Register</h2>
+      {% csrf_token %}
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}<br>
+      <label for="{{ form.password1.id_for_label }}">Password:</label>
+      {{ form.password1 }}<br>
+      <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+      {{ form.password2 }}<br>
+      <label for="{{ form.role.id_for_label }}">User Role:</label>
+      {{ form.role }}<br>
+      <button type="submit"><b>Register</b></button>
+    </form>
+  </div>
+{% endblock %}

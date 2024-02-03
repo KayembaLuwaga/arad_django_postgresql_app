@@ -1,0 +1,16 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/grade_course.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Grade Course: {{ course.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for enrollment in enrollments %}
+            <label>{{ enrollment.student.username }} Grade:</label>
+            <input type="text" name="grade_{{ enrollment.id }}" value="{{ enrollment.grade }}">
+            <br>
+        {% endfor %}
+        <button type="submit">Save Grades</button>
+    </form>
+{% endblock %}

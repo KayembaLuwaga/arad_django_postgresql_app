@@ -1,0 +1,31 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/courses_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Courses List</h2>
+    <ul>
+        {% for course in courses %}
+            <li>
+                {{ course.name }} - Instructor: {{ course.instructor.username }}
+                (<a href="{% url 'course_detail' course_id=course.id %}">Course Details</a>)
+                {% if user.is_authenticated and user.role == 'student' %}
+                    <form method="post" action="{% url 'enroll_course' course.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Enroll</button>
+                    </form>
+                {% endif %}
+                {% if user.is_staff %}
+                    <!-- Add link to grade assignments/exams for staff -->
+                    <a href="{% url 'grade_course' course.id %}">Grade</a>
+                {% endif %}
+                {% for enrollment in enrollments %}
+                    {% if enrollment.course.id == course.id %}
+                        <!-- Display student's grade if enrolled -->
+                        <span>Grade: {{ enrollment.grade }}</span>
+                    {% endif %}
+                {% endfor %}
+            </li>
+            <!-- Add links to edit and delete courses if the user has the right permissions -->
+        {% endfor %}
+    </ul>
+{% endblock %}

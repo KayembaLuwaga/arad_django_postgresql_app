@@ -1,0 +1,13 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/student_dashboard.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome to the Student Dashboard</h2>
+    <h3>Your Courses:</h3>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.course.name }} - {{ course.course.instructor.username }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
