@@ -1,0 +1,114 @@
+/* Aradhya_django/Aradhya_CMS_app/static/css/style.css */
+
+/* Responsive styles for dashboard columns */
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Style for the left column */
+.column-left {
+    width: 35%; /* Set the width for the left column */
+    padding: 20px; /* Add padding for better spacing */
+    background: #f0e6f4; /* Faint purplish background color */
+}
+
+.description{
+text-align: left;
+}
+
+/* Style for the right column */
+.column-right {
+    width: 65%; /* Set the width for the right column */
+    padding: 20px; /* Add padding for better spacing */
+    background: linear-gradient(to bottom, #f0e6f4, #d8c3e5); /* Vertical gradient */
+}
+
+/* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    nav ul {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+/* Style for the button */
+button {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding for better appearance */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+    background-color: #f2f2f2; /* Add a background color to the main content */
+    color: #333; /* Set font color */
+}

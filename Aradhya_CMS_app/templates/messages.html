@@ -1,0 +1,26 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/messages.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Messages</h2>
+    {% if messages %}
+        <ul>
+    {% for message in messages %}
+        <li>
+            <strong>{{ message.sender.username }}:</strong>
+            {{ message.content }}
+            <span class="timestamp">{{ message.timestamp }}</span>
+        </li>
+    {% endfor %}
+</ul>
+
+    {% else %}
+        <p>No messages.</p>
+    {% endif %}
+<h2>Ask Question</h2>
+    <form method="post" action="{% url 'ask_question' course_id %}">
+        {% csrf_token %}
+        <textarea name="question_content" placeholder="Ask your question..." required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

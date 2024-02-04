@@ -1,0 +1,26 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/student_dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome to the Student Dashboard</h2>
+    <div class="dashboard-container">
+        <div class="dashboard-column" id="enrolled-courses">
+            <h3>Enrolled Courses</h3>
+            <ul id="courses-list">
+                <!-- Dummy content will be updated by JavaScript -->
+                <li>Course 1 - Instructor: Instructor 1</li>
+                <li>Course 2 - Instructor: Instructor 2</li>
+            </ul>
+            <p>Here, you see your enrolled courses...</p>
+        </div>
+        <div class="dashboard-column" id="grades">
+            <h3>Grades</h3>
+            <ul id="grades-list">
+                <!-- Dummy content will be updated by JavaScript -->
+                <li>Grade 1 - Student: Student 1</li>
+                <li>Grade 2 - Student: Student 2</li>
+            </ul>
+            <p>Here, you see your grades...</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/course_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ course.name }} - Instructor: {{ course.instructor.username }}</h2>
+    <ul>
+        {% for resource in resources %}
+            <li>
+                <a href="{{ resource.file.url }}" download>{{ resource.file.name }}</a>
+                {% if resource.description %}
+                    - {{ resource.description }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

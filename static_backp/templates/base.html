@@ -1,0 +1,37 @@
+<!-- Aradhya_django_project/Aradhya_CMS_app/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aradhya SCMS{% endblock %}</title>
+    <!-- Add your CSS links or stylesheets here -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>Aradhya Student Course Management System</h1>
+    </header>
+
+    <nav>
+        <!-- Add your navigation links here -->
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- This block will be overridden by content from child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aradhya Student Course Management System (SCMS), in Django & PostgreSQL</p>
+    </footer>
+
+</body>
+</html>

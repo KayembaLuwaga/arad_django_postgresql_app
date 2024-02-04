@@ -1,0 +1,122 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/courses_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+    <div class="columns-container">
+        <table>
+            <th style="width:35%;height:100%;align:left;">
+        <div class="column-left" style="width:100%;border:0;align:left;">
+            <h2>Courses List</h2>
+            <p style="text-align:left;" class="description">Here, you see the list of available courses along with relevant details. You can enroll in courses if you are a student, and grade assignments/exams if you are a staff member.</p>
+            <ul>
+                {% for course in courses %}
+                    <li>
+                        {{ course.name }} - Instructor: {{ course.instructor.username }}
+                        (<a href="{% url 'course_detail' course_id=course.id %}">Course Details</a>)
+                        {% if user.is_authenticated and user.role == 'student' %}
+                            <form method="post" action="{% url 'enroll_course' course.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Enroll</button>
+                            </form>
+                        {% endif %}
+                        {% if user.is_staff %}
+                            <!-- Add link to grade assignments/exams for staff -->
+                            <a href="{% url 'grade_course' course.id %}">Grade</a>
+                        {% endif %}
+                        {% for enrollment in enrollments %}
+                            {% if enrollment.course.id == course.id %}
+                                <!-- Display student's grade if enrolled -->
+                                <span>Grade: {{ enrollment.grade }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                    <!-- Add links to edit and delete courses if the user has the right permissions -->
+                {% endfor %}
+            </ul>
+
+    <h2>Edit Course</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Course</button>
+    </form>
+<h2>Add Course</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Course</button>
+    </form>
+
+    <h2>Grade Course: {{ course.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for enrollment in enrollments %}
+            <label>{{ enrollment.student.username }} Grade:</label>
+            <input type="text" name="grade_{{ enrollment.id }}" value="{{ enrollment.grade }}">
+            <br>
+        {% endfor %}
+        <button type="submit">Save Grades</button>
+    </form>
+
+        </div>
+            </th>
+            <th style="width:65%;height:100%;align:left;">
+            <div class="column-right" style="width:100%;border: 0; align:left;">
+            <p style="text-align:left;" class="description">
+                Here, you can see additional information or perform actions related to the course list.</p>
+            <!-- Add any additional content for the right column -->
+            <h2>{{ course.name }} - Instructor: {{ course.instructor.username }}</h2>
+    <ul>
+        {% for resource in resources %}
+            <li>
+                <a href="{{ resource.file.url }}" download>{{ resource.file.name }}</a>
+                {% if resource.description %}
+                    - {{ resource.description }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+            <h2>Delete Course</h2>
+    <p style="text-align:left;" class="description">Are you sure you want to delete the course "{{ course.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete it</button>
+    </form>
+            <p style="text-align:left;" class="description">Only Teachers and College Administrators (HOD) can modify the course, Students can only view</p>
+            <a href="{% url 'courses_list' %}"><button>Cancel</button></a>
+
+<h2>Mark Course Attendance - {{ course.name }}</h2>
+{% for course in courses %}
+    <form method="post" action="{% url 'mark_attendance' course.id %}">
+        {% csrf_token %}
+        <ul>
+            {% for student in students %}
+                <li>
+                    <input type="checkbox" name="present_students" value="{{ student.id }}">
+                    {{ student.username }}
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit Attendance</button>
+    </form>
+{% endfor %}
+
+    <h3>Attendance Records</h3>
+    <ul>
+        {% for record in attendance_records %}
+            <li>{{ record.user.username }} - {{ record.date }} - {% if record.present %}Present{% else %}Absent{% endif %}</li>
+        {% endfor %}
+    </ul>
+<h2>Upload Course Resource</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload File(s)</button>
+    </form>
+            </div>
+            </th>
+            </table>
+        </div>
+        </main>
+{% endblock %}

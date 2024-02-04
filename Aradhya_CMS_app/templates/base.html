@@ -1,0 +1,70 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aradhya SCMS{% endblock %}</title>
+    <!-- Load static tag -->
+    {% load static %}
+    <!-- Correct static file reference -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Add jQuery for easier AJAX handling -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Add your custom JavaScript file -->
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Aradhya Student Course Management System</h1>
+    </header>
+
+    <nav>
+        <!-- Add your navigation links here -->
+        <div align="center">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                {% if user.role == 'student' %}
+                    <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+                {% elif user.role == 'teacher' %}
+                    <li><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                {% elif user.role == 'admin' %}
+                    <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                {% endif %}
+                <li>{{ user.username }} | {{ user.get_role_display }}</li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a href="{% url 'courses_list' %}">Courses</a></li>
+            <li><a href="{% url 'messages' %}">Messages & Notifications</a></li>
+            <!-- Add more navigation links as needed -->
+            {% if user.is_authenticated %}
+                <li>{{ user.username }} | {{ user.get_role_display }}</li>
+            {% else %}
+                <li>Guest</li>
+            {% endif %}
+
+            <!-- Add logout link -->
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- This block will be overridden by content from child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aradhya Student Course Management System (SCMS), in Django & PostgreSQL</p>
+    </footer>
+
+</body>
+</html>

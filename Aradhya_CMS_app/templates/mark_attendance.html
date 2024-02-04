@@ -1,0 +1,26 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/mark_attendance.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Mark Attendance - {{ course.name }}</h2>
+    <form method="post" action="{% url 'mark_attendance' course.id %}">
+        {% csrf_token %}
+        <ul>
+            {% for student in students %}
+                <li>
+                    <input type="checkbox" name="present_students" value="{{ student.id }}">
+                    {{ student.username }}
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit Attendance</button>
+    </form>
+
+    <h3>Attendance Records</h3>
+    <ul>
+        {% for record in attendance_records %}
+            <li>{{ record.user.username }} - {{ record.date }} - {% if record.present %}Present{% else %}Absent{% endif %}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

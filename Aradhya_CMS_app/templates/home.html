@@ -1,0 +1,32 @@
+<!-- Aradhya_django/Aradhya_CMS_app/templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Aradhya SCMS{% endblock %}
+
+{% block content %}
+<h2 align="center">Welcome to Aradhya Student Course Management System (SCMS)</h2>
+<div class="form-container">
+
+    <p align="justified">
+        Aradhya SCMS is a powerful Student Course Management System designed to streamline the process
+        of managing courses for students, teachers, and administrators. Whether you are a student looking
+        to enroll in courses, a teacher managing your courses, or an administrator overseeing the system,
+        Aradhya SCMS provides a user-friendly interface and robust features to meet your needs.
+    </p>
+
+    <p>
+        <p>Ready to get started?</p> <p>Please
+        <b><a href="{% url 'register' %}">register</a></b>
+        if you are a new user, or
+        <b><a href="{% url 'login' %}">login</a></b>
+        if you are an existing user. Explore the features and make the most out of Aradhya SCMS!</p>
+    </p>
+
+    <p>
+        <h3>
+        <b></b><a href="{% url 'register' %}">Register</a></b> |
+        <b><a href="{% url 'login' %}">Login</a></b>
+         </h3>
+    </p>
+</div>
+{% endblock %}
