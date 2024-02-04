@@ -18,31 +18,31 @@ Table of Contents
 ## PostgreSQL
 ### Windows
 
-    Download PostgreSQL:
+   Download PostgreSQL:
         Visit the official PostgreSQL download page and download the installer.
 
-    Install PostgreSQL:
+   Install PostgreSQL:
         Run the installer and follow the on-screen instructions.
         Note the PostgreSQL superuser credentials (username and password) during the installation.
 
-    Download pgAdmin 4:
+   Download pgAdmin 4:
         Visit the pgAdmin 4 download page and download the installer.
 
-    Install pgAdmin 4:
+   Install pgAdmin 4:
         Run the installer and follow the on-screen instructions.
         Configure pgAdmin 4 to connect to the PostgreSQL server using the superuser credentials.
 
 ### Linux/Ubuntu
+
 1. Install PostgreSQL:
-'
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-'
+        sudo apt update
+        sudo apt install postgresql postgresql-contrib
+
 2. Set up PostgreSQL:
 
     PostgreSQL is automatically started after installation.
     Create a superuser for PostgreSQL:
-    '
+
     sudo -u postgres createuser --interactive
     '
 3. Install pgAdmin 4:
@@ -60,7 +60,7 @@ sudo apt install postgresql postgresql-contrib
 
 1. Clone the Repository:
 '
-git clone https://github.com/yourusername/Aradhya_django.git
+git clone https://github.com/Aradhya/Aradhya_django.git
 cd Aradhya_django
 '
 2. Create a Virtual Environment:
